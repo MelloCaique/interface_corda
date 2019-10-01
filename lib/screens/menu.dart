@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:interface_corda/services/cash.dart';
 import 'package:interface_corda/services/dashboard.dart';
 import 'package:interface_corda/services/network.dart';
 import 'package:interface_corda/services/transactions.dart';
+import 'package:interface_corda/services/vault.dart';
+
 
 class Menu extends StatefulWidget {
   @override
@@ -14,8 +15,8 @@ class _MenuState extends State<Menu> {
   int _currentIndex = 0;
   final List<Widget> _children = [
     Dashboard(),
+    Vault(),
     Transactions(),
-    Cash(),
     Network(),
   ];
 
@@ -63,11 +64,11 @@ class _MenuState extends State<Menu> {
             BottomNavigationBarItem(
                 backgroundColor: Colors.black,
                 icon: Icon(
-                  Icons.compare_arrows,
+                  Icons.account_balance_wallet,
                   color: Colors.white,
                 ),
                 title: Text(
-                  "Transactions",
+                  "Vault",
                   style: TextStyle(
                     color: Colors.white,
                   ),
@@ -75,11 +76,11 @@ class _MenuState extends State<Menu> {
             BottomNavigationBarItem(
                 backgroundColor: Colors.black,
                 icon: Icon(
-                  Icons.monetization_on,
+                  Icons.compare_arrows,
                   color: Colors.white,
                 ),
                 title: Text(
-                  "Cash",
+                  "Transaction",
                   style: TextStyle(
                     color: Colors.white,
                   ),

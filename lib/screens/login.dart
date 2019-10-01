@@ -51,7 +51,7 @@ class _LoginState extends State<Login> {
                 Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: Colors.white.withOpacity(0.5)
+                    color: Colors.white.withOpacity(0.3)
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -79,12 +79,13 @@ class _LoginState extends State<Login> {
                                       controller: _hostController,
                                       validator: (value) {
                                         if (value.isEmpty) {
-                                          return "   erro";
+                                          return "   Error";
                                         }
                                       },
                                       keyboardType: TextInputType.number,
                                       decoration: InputDecoration(
                                         hintText: "Host",
+                                        hintStyle: TextStyle( fontSize: 15, fontWeight: FontWeight.bold),
                                         fillColor: Colors.green,
                                       ),
                                     ),
@@ -103,12 +104,13 @@ class _LoginState extends State<Login> {
                                       controller: _portController,
                                       validator: (value) {
                                         if (value.isEmpty) {
-                                          return "   erro";
+                                          return "   Error";
                                         }
                                       },
                                       keyboardType: TextInputType.number,
                                       decoration: InputDecoration(
                                         hintText: "Port",
+                                        hintStyle: TextStyle( fontSize: 15, fontWeight: FontWeight.bold),
                                         fillColor: Colors.green,
                                       ),
                                     ),
@@ -133,12 +135,13 @@ class _LoginState extends State<Login> {
                                       controller: _userController,
                                       validator: (value) {
                                         if (value.isEmpty) {
-                                          return "   erro";
+                                          return "   Error";
                                         }
                                       },
                                       keyboardType: TextInputType.text,
                                       decoration: InputDecoration(
                                         hintText: "Username",
+                                        hintStyle: TextStyle( fontSize: 15, fontWeight: FontWeight.bold),
                                         fillColor: Colors.green,
                                       ),
                                     ),
@@ -163,13 +166,14 @@ class _LoginState extends State<Login> {
                                       controller: _passwordController,
                                       validator: (value) {
                                         if (value.isEmpty) {
-                                          return "   erro";
+                                          return "   Error";
                                         }
                                       },
                                       obscureText: true,
                                       keyboardType: TextInputType.text,
                                       decoration: InputDecoration(
                                         hintText: "Password",
+                                        hintStyle: TextStyle( fontSize: 15, fontWeight: FontWeight.bold),
                                         fillColor: Colors.green,
                                       ),
                                     ),
@@ -178,13 +182,13 @@ class _LoginState extends State<Login> {
                           ],
                         ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: <Widget>[
                             RaisedButton(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(5)),
                               color: Colors.red,
-                              child: Text('Conect', style:TextStyle(color: Colors.white)),
+                              child: Text('Conect', style:TextStyle(color: Colors.white, fontSize: 13.5, fontWeight: FontWeight.bold)),
                               onPressed: () {
                                 setState(() {
                                   if (_formKey.currentState.validate()) {
@@ -192,6 +196,16 @@ class _LoginState extends State<Login> {
                                     acesso();
                                   }
                                 });
+                              },
+                            ),
+                  
+                            RaisedButton(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5)),
+                              color: Colors.red,
+                              child: Text('QrCode', style:TextStyle(color: Colors.white, fontSize: 13.5, fontWeight: FontWeight.bold)),
+                              onPressed: () {
+                               //read QrCode
                               },
                             ),
                           ],
