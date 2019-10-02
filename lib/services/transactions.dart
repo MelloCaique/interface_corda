@@ -46,7 +46,7 @@ class _TransactionsState extends State<Transactions> {
                               return "   Error";
                             }
                           },
-                          obscureText: true,
+                          
                           keyboardType: TextInputType.text,
                           decoration: InputDecoration(
                             hintText: "Counter-Party",
@@ -71,7 +71,7 @@ class _TransactionsState extends State<Transactions> {
                               return "   Error";
                             }
                           },
-                          obscureText: true,
+                          
                           keyboardType: TextInputType.text,
                           decoration: InputDecoration(
                             hintText: "Value",
@@ -93,7 +93,7 @@ class _TransactionsState extends State<Transactions> {
                               fontSize: 13.5,
                               fontWeight: FontWeight.bold)),
                       onPressed: () {
-                        
+                        debugPrint('hello');
                       },
                     ),
                   ],

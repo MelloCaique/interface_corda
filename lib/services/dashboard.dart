@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:interface_corda/data/data.dart';
+import 'package:interface_corda/services/transactions.dart';
 import 'package:interface_corda/widgets/fchart.dart';
 
 
@@ -14,6 +15,10 @@ class _DashboardState extends State<Dashboard> {
 
   @override
   Widget build(BuildContext context) {
+    setState(() {
+      Transactions();
+      numtx;
+    });
     return Container(
       color: Colors.white,
       child: ListView(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 
@@ -10,8 +9,6 @@ class ChartApp extends StatefulWidget {
 }
 
 class _ChartAppState extends State<ChartApp> {
-
-  String _format = 'MM-dd';
 
   @override
   Widget build(BuildContext context) {

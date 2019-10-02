@@ -9,15 +9,16 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
-  final _hostController = new TextEditingController();
-  final _portController = new TextEditingController();
   final _userController = new TextEditingController();
   final _passwordController = new TextEditingController();
 
+  String valueHost;
+  String valuePort;
+
   acesso() {
     print("outra tela");
-    host = _hostController.text; 
-    port = _portController.text;
+    host = valueHost;
+    port = valuePort;
     Navigator.push(context, MaterialPageRoute(builder: (context) => Menu()));
   }
 
@@ -36,23 +37,25 @@ class _LoginState extends State<Login> {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Image.asset(
-                  'assets/images/logo.png',
-                  height: 100,
-                ),
+                
+               // Image.asset(
+               //   'assets/images/logo.png',
+               //   height: 100,
+               // ),
                 Center(
                     child: Padding(
                   padding: const EdgeInsets.all(1.0),
                   child: Image.asset(
                     'assets/images/logo_escrito.png',
-                    height: 70,
+                    height: 100,
                   ),
                 )),
+                Text('Node Connection', style: TextStyle(color: Colors.red, fontSize: 20),),
+                SizedBox(height: 10,),
                 Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.white.withOpacity(0.3)
-                  ),
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.white.withOpacity(0.3)),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
@@ -65,7 +68,6 @@ class _LoginState extends State<Login> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
-                           
                             Flexible(
                               flex: 2,
                               child: Padding(
@@ -76,16 +78,20 @@ class _LoginState extends State<Login> {
                                     borderRadius: BorderRadius.circular(10),
                                     elevation: 0,
                                     child: TextFormField(
-                                      controller: _hostController,
+                                      initialValue: '10.42.0.30',
                                       validator: (value) {
                                         if (value.isEmpty) {
                                           return "   Error";
+                                        } else {
+                                          valueHost = value;
                                         }
                                       },
                                       keyboardType: TextInputType.number,
                                       decoration: InputDecoration(
                                         hintText: "Host",
-                                        hintStyle: TextStyle( fontSize: 15, fontWeight: FontWeight.bold),
+                                        hintStyle: TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold),
                                         fillColor: Colors.green,
                                       ),
                                     ),
@@ -101,16 +107,20 @@ class _LoginState extends State<Login> {
                                     borderRadius: BorderRadius.circular(10),
                                     elevation: 0,
                                     child: TextFormField(
-                                      controller: _portController,
+                                      initialValue: '50005',
                                       validator: (value) {
                                         if (value.isEmpty) {
                                           return "   Error";
+                                        } else {
+                                          valuePort = value;
                                         }
                                       },
                                       keyboardType: TextInputType.number,
                                       decoration: InputDecoration(
                                         hintText: "Port",
-                                        hintStyle: TextStyle( fontSize: 15, fontWeight: FontWeight.bold),
+                                        hintStyle: TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold),
                                         fillColor: Colors.green,
                                       ),
                                     ),
@@ -121,7 +131,6 @@ class _LoginState extends State<Login> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
-                           
                             Flexible(
                               flex: 3,
                               child: Padding(
@@ -141,7 +150,9 @@ class _LoginState extends State<Login> {
                                       keyboardType: TextInputType.text,
                                       decoration: InputDecoration(
                                         hintText: "Username",
-                                        hintStyle: TextStyle( fontSize: 15, fontWeight: FontWeight.bold),
+                                        hintStyle: TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold),
                                         fillColor: Colors.green,
                                       ),
                                     ),
@@ -152,7 +163,6 @@ class _LoginState extends State<Login> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
-                            
                             Flexible(
                               flex: 3,
                               child: Padding(
@@ -173,7 +183,9 @@ class _LoginState extends State<Login> {
                                       keyboardType: TextInputType.text,
                                       decoration: InputDecoration(
                                         hintText: "Password",
-                                        hintStyle: TextStyle( fontSize: 15, fontWeight: FontWeight.bold),
+                                        hintStyle: TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold),
                                         fillColor: Colors.green,
                                       ),
                                     ),
@@ -188,7 +200,11 @@ class _LoginState extends State<Login> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(5)),
                               color: Colors.red,
-                              child: Text('Conect', style:TextStyle(color: Colors.white, fontSize: 13.5, fontWeight: FontWeight.bold)),
+                              child: Text('Conect',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 13.5,
+                                      fontWeight: FontWeight.bold)),
                               onPressed: () {
                                 setState(() {
                                   if (_formKey.currentState.validate()) {
@@ -198,15 +214,16 @@ class _LoginState extends State<Login> {
                                 });
                               },
                             ),
-                  
                             RaisedButton(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(5)),
                               color: Colors.red,
-                              child: Text('QrCode', style:TextStyle(color: Colors.white, fontSize: 13.5, fontWeight: FontWeight.bold)),
-                              onPressed: () {
-                               //read QrCode
-                              },
+                              child: Text('QrCode',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 13.5,
+                                      fontWeight: FontWeight.bold)),
+                              onPressed: () {},
                             ),
                           ],
                         ),
