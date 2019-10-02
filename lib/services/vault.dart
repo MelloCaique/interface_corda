@@ -106,7 +106,6 @@ class _VaultState extends State<Vault> {
                               ),
                             );
                           } else {
-                            print("nao deu");
                             return new CircularProgressIndicator(
                               backgroundColor: Colors.white,
                             );
@@ -123,11 +122,11 @@ class _VaultState extends State<Vault> {
                         return Scaffold(
                           appBar: AppBar(
                             title: Text(
-                              "Transaction Info",
-                              style: TextStyle(color: Colors.red),
+                              "Infomations",
+                              style: TextStyle(color: Colors.black),
                             ),
                             centerTitle: true,
-                            backgroundColor: Colors.black,
+                            backgroundColor: Colors.grey.withOpacity(0.5),
                           ),
                           body: ListView(
                             children: <Widget>[
