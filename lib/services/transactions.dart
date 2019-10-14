@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 class Transactions extends StatefulWidget {
   @override
   _TransactionsState createState() => _TransactionsState();
@@ -46,7 +47,6 @@ class _TransactionsState extends State<Transactions> {
                               return "   Error";
                             }
                           },
-                          
                           keyboardType: TextInputType.text,
                           decoration: InputDecoration(
                             hintText: "Counter-Party",
@@ -71,7 +71,6 @@ class _TransactionsState extends State<Transactions> {
                               return "   Error";
                             }
                           },
-                          
                           keyboardType: TextInputType.text,
                           decoration: InputDecoration(
                             hintText: "Value",
@@ -93,16 +92,18 @@ class _TransactionsState extends State<Transactions> {
                               fontSize: 13.5,
                               fontWeight: FontWeight.bold)),
                       onPressed: () {
-                        debugPrint('hello');
+                        //Post
                       },
                     ),
                   ],
                 ),
               ),
             ),
-          )
+          ),
+          
         ],
       ),
     );
   }
+
 }

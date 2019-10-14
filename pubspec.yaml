@@ -56,7 +56,11 @@ flutter:
   assets:
   - assets/images/logo_escrito.png
   - assets/images/logo.png
-
+  - assets/images/bradesco_logo.png
+  - assets/images/bradesco_logo_lado.png
+  - assets/images/logo-itau.png 
+  - assets/images/caixa-logo.png 
+  - assets/images/santander-logo.png 
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

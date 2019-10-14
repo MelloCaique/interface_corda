@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:interface_corda/services/dashboard.dart';
-import 'package:interface_corda/services/network.dart';
 import 'package:interface_corda/services/transactions.dart';
-import 'package:interface_corda/services/vault.dart';
 
 
 class Menu extends StatefulWidget {
@@ -15,9 +13,8 @@ class _MenuState extends State<Menu> {
   int _currentIndex = 0;
   final List<Widget> _children = [
     Dashboard(),
-    Vault(),
     Transactions(),
-    Network(),
+
   ];
 
   void onTabTapped(int index) {
@@ -30,8 +27,14 @@ class _MenuState extends State<Menu> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Image.asset("assets/images/logo_escrito.png"),
-        backgroundColor: Colors.black,
+        title: Text(
+                  'ID Máquina Compartilhada',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w400
+                      ),
+                ),
         centerTitle: true,
         actions: <Widget>[
           IconButton(
@@ -42,9 +45,11 @@ class _MenuState extends State<Menu> {
             onPressed: () {},
           ),
         ],
+        backgroundColor: Colors.blue.shade900,
       ),
       bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Colors.black,
+          
+          backgroundColor: Colors.blue.shade900.withOpacity(0.75),
           type: BottomNavigationBarType.fixed,
           currentIndex: 0,
           onTap: onTabTapped,
@@ -64,35 +69,11 @@ class _MenuState extends State<Menu> {
             BottomNavigationBarItem(
                 backgroundColor: Colors.black,
                 icon: Icon(
-                  Icons.account_balance_wallet,
+                  Icons.mobile_screen_share,
                   color: Colors.white,
                 ),
                 title: Text(
-                  "Vault",
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                )),
-            BottomNavigationBarItem(
-                backgroundColor: Colors.black,
-                icon: Icon(
-                  Icons.compare_arrows,
-                  color: Colors.white,
-                ),
-                title: Text(
-                  "Transaction",
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                )),
-            BottomNavigationBarItem(
-                backgroundColor: Colors.black,
-                icon: Icon(
-                  Icons.language,
-                  color: Colors.white,
-                ),
-                title: Text(
-                  "Network",
+                  "Share ID",
                   style: TextStyle(
                     color: Colors.white,
                   ),
