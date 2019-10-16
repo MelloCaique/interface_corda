@@ -19,6 +19,8 @@ class _LoginState extends State<Login> {
     print("outra tela");
     host = valueHost;
     port = valuePort;
+    print(host);
+    print(port);
     Navigator.push(context, MaterialPageRoute(builder: (context) => Menu()));
   }
 
@@ -32,7 +34,7 @@ class _LoginState extends State<Login> {
             Container(
                 decoration: new BoxDecoration(
               gradient: new LinearGradient(
-                  colors: [Colors.blue.shade900, Colors.blueGrey, Colors.red],
+                  colors: [Colors.white, Colors.blue.shade900, Colors.red],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   stops: [0.0, 0.5, 1.0],
@@ -61,7 +63,10 @@ class _LoginState extends State<Login> {
                               height: 30,
                             ),
                           )),
-                          Divider(),
+                          Divider(
+                            thickness: 2,
+                            color: Colors.white,
+                          ),
                           Text(
                             'Acesso ID Máquina' + '\n' + 'Compartilhada',
                             textAlign: TextAlign.center,
@@ -86,7 +91,7 @@ class _LoginState extends State<Login> {
                                       borderRadius: BorderRadius.circular(10),
                                       elevation: 0,
                                       child: TextFormField(
-                                        initialValue: '10.42.0.30',
+                                        initialValue: '10.42.0.251',
                                         validator: (value) {
                                           if (value.isEmpty) {
                                             return "   Error";
@@ -115,7 +120,7 @@ class _LoginState extends State<Login> {
                                       borderRadius: BorderRadius.circular(10),
                                       elevation: 0,
                                       child: TextFormField(
-                                        initialValue: '50005',
+                                        initialValue: '8080',
                                         validator: (value) {
                                           if (value.isEmpty) {
                                             return "   Error";

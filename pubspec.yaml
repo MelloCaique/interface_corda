@@ -54,8 +54,6 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-  - assets/images/logo_escrito.png
-  - assets/images/logo.png
   - assets/images/bradesco_logo.png
   - assets/images/bradesco_logo_lado.png
   - assets/images/logo-itau.png 

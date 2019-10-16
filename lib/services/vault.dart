@@ -13,19 +13,19 @@ class _VaultState extends State<Vault> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        //child: updateLista(),
-      ),
+          //child: updateLista(),
+          ),
     );
   }
 
-  /*Future<dynamic> getUrl() async {
+  Future<dynamic> getUrl() async {
     String apiUrl = "http://$host:$port/api/example/ious";
 
     http.Response response = await http.get(apiUrl);
     return json.decode(response.body);
- */ }
+  }
 
- /* Widget updateLista() {
+  Widget updateLista() {
     return Scaffold(
       body: new FutureBuilder(
           future: getUrl(),
@@ -117,7 +117,7 @@ class _VaultState extends State<Vault> {
           }),
     );
   }
-*/
+
   void updateInfo(BuildContext context, String clas, String id, String contract,
       String notary, String key, String txhash) {
     showModalBottomSheet(
@@ -167,5 +167,5 @@ class _VaultState extends State<Vault> {
             ),
           );
         });
-  //}
+  }
 }

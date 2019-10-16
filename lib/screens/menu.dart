@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:interface_corda/services/compartilhar.dart';
 import 'package:interface_corda/services/dashboard.dart';
-import 'package:interface_corda/services/transactions.dart';
-
 
 class Menu extends StatefulWidget {
   @override
@@ -13,8 +12,7 @@ class _MenuState extends State<Menu> {
   int _currentIndex = 0;
   final List<Widget> _children = [
     Dashboard(),
-    Transactions(),
-
+    Compartilhar(),
   ];
 
   void onTabTapped(int index) {
@@ -28,13 +26,10 @@ class _MenuState extends State<Menu> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-                  'ID Máquina Compartilhada',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w400
-                      ),
-                ),
+          'ID Máquina Compartilhada',
+          style: TextStyle(
+              color: Colors.white, fontSize: 18, fontWeight: FontWeight.w400),
+        ),
         centerTitle: true,
         actions: <Widget>[
           IconButton(
@@ -48,7 +43,6 @@ class _MenuState extends State<Menu> {
         backgroundColor: Colors.blue.shade900,
       ),
       bottomNavigationBar: BottomNavigationBar(
-          
           backgroundColor: Colors.blue.shade900.withOpacity(0.75),
           type: BottomNavigationBarType.fixed,
           currentIndex: 0,
@@ -73,7 +67,7 @@ class _MenuState extends State<Menu> {
                   color: Colors.white,
                 ),
                 title: Text(
-                  "Share ID",
+                  "Compartilhar",
                   style: TextStyle(
                     color: Colors.white,
                   ),
