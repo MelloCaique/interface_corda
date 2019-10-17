@@ -84,40 +84,47 @@ class _DashboardState extends State<Dashboard> {
             return ListView.builder(
                 itemCount: _counter,
                 itemBuilder: (BuildContext context, int index) {
-                  return Card(
-                    elevation: 3,
-                    color: Colors.white,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'ID Máquina: ' +
-                              content[index]["hashSharedMachine"].toString(),
-                          style: TextStyle(
-                              color: Colors.black, fontWeight: FontWeight.bold),
-                        ),
-                        content[index]["operationType"].toString() == "1"
-                            ? Text('Status: COMPROMETIDA',
-                                style: TextStyle(
-                                    color: Colors.red,
-                                    fontWeight: FontWeight.bold))
-                            : Text('Status: SUSPEITA',
-                                style: TextStyle(
-                                    color: Colors.yellow.shade800,
-                                    fontWeight: FontWeight.bold)),
-                        Text(
-                            'Motivo: ' +
-                                content[index]["observation"].toString(),
+                  return GestureDetector(
+                    onTap: () {
+                      detailsMachine(context,
+                          content[index]["hashSharedMachine"].toString());
+                    },
+                    child: Card(
+                      elevation: 3,
+                      color: Colors.white,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            'ID Máquina: ' +
+                                content[index]["hashSharedMachine"].toString(),
                             style: TextStyle(
                                 color: Colors.black,
-                                fontWeight: FontWeight.bold)),
-                        Text(
-                            'Data/Hora: ' +
-                                content[index]["recordedTime"].toString(),
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold)),
-                      ],
+                                fontWeight: FontWeight.bold),
+                          ),
+                          content[index]["operationType"].toString() == "1"
+                              ? Text('Status: COMPROMETIDA',
+                                  style: TextStyle(
+                                      color: Colors.red,
+                                      fontWeight: FontWeight.bold))
+                              : Text('Status: SUSPEITA',
+                                  style: TextStyle(
+                                      color: Colors.yellow.shade800,
+                                      fontWeight: FontWeight.bold)),
+                          Text(
+                              'Motivo: ' +
+                                  content[index]["observation"].toString(),
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold)),
+                          Text(
+                              'Data/Hora: ' +
+                                  content[index]["recordedTime"].toString(),
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold)),
+                        ],
+                      ),
                     ),
                   );
                 });
@@ -239,50 +246,6 @@ class _DashboardState extends State<Dashboard> {
                           ),
                         ),
                       ),
-                      /* Container(
-                        child: Card(
-                          elevation: 3,
-                          color: Colors.white,
-                          child: Table(
-                            border: TableBorder.all(),
-                            children: [
-                              TableRow(children: [
-                                Text(
-                                  'Total Comprometida',
-                                  textAlign: TextAlign.start,
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                  'Total Suspeita',
-                                  textAlign: TextAlign.start,
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                              ]),
-                              contentTable[index]["operationType"].toString() == "1" ?
-                              TableRow(children: [
-                                Text(
-                                  '1',
-                                  textAlign: TextAlign.center,
-                                ),
-                                Text(
-                                  '?',
-                                  textAlign: TextAlign.center,
-                                ),
-                              ]):TableRow(children: [
-                                Text(
-                                  '?',
-                                  textAlign: TextAlign.center,
-                                ),
-                                Text(
-                                  '1',
-                                  textAlign: TextAlign.center,
-                                ),
-                              ])
-                            ],
-                          ),
-                        ),
-                      )
-                      */
                     ],
                   );
                 });
@@ -295,9 +258,70 @@ class _DashboardState extends State<Dashboard> {
                         style: TextStyle(
                           color: Colors.white,
                         )),
-                    new CircularProgressIndicator(
-                      backgroundColor: Colors.red
-                    ),
+                    new CircularProgressIndicator(backgroundColor: Colors.red),
+                  ],
+                ),
+              ),
+            );
+          }
+        });
+  }
+
+  Future<dynamic> getMachineInfo(String id) async {
+    String apiUrl =
+        "http://$host:$port/sharedmachineweb/api/nodes/machines/$id";
+
+    http.Response responseInfo = await http.get(apiUrl);
+    return json.decode(responseInfo.body);
+  }
+
+  void detailsMachine(BuildContext context, String id) {
+    showModalBottomSheet(
+        context: context,
+        builder: (_) {
+          return Scaffold(
+            appBar: AppBar(
+              title: Text(
+                'Informações da máquina',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w400),
+              ),
+              backgroundColor: Colors.blue.shade900,
+              centerTitle: true,
+            ),
+            body: machineInfoList(id),
+          );
+        });
+  }
+
+  Widget machineInfoList(String machineId) {
+    String id = machineId;
+    return new FutureBuilder(
+        future: getMachineInfo(id),
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          if (snapshot.hasData) {
+            Map content = snapshot.data;
+            return Container(
+              child: ListView(
+                children: <Widget>[
+                  Text(
+                    content.toString(),
+                   ),
+                ],
+              ),
+            );
+          } else {
+            return Center(
+              child: Container(
+                child: Column(
+                  children: <Widget>[
+                    Text('Carregando informações',
+                        style: TextStyle(
+                          color: Colors.white,
+                        )),
+                    new CircularProgressIndicator(backgroundColor: Colors.red),
                   ],
                 ),
               ),
