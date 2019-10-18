@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'package:interface_corda/data/data.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
 
 class Compartilhar extends StatefulWidget {
   @override
@@ -47,7 +46,7 @@ class _CompartilharState extends State<Compartilhar> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
-                      Text('Compartilhar Máquina',
+                      Text(' Compartilhar Máquina',
                           textAlign: TextAlign.end,
                           style: TextStyle(
                               color: Colors.white,
@@ -94,7 +93,7 @@ class _CompartilharState extends State<Compartilhar> {
                             },
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
-                              hintText: "Motivo",
+                              hintText: " Motivo",
                               hintStyle: TextStyle(
                                   fontSize: 15, fontWeight: FontWeight.bold),
                               fillColor: Colors.green,

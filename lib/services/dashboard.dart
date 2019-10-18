@@ -316,28 +316,36 @@ class _DashboardState extends State<Dashboard> {
                     title: Text('Hardware: ',
                         style: TextStyle(
                             color: Colors.black, fontWeight: FontWeight.bold)),
-                    subtitle: Text(content["sharedMachineBean"]["deviceInfo"]["hardware"].toString()),
+                    subtitle: Text(content["sharedMachineBean"]["deviceInfo"]
+                            ["hardware"]
+                        .toString()),
                   ),
                   Divider(),
                   ListTile(
                     title: Text('OS: ',
                         style: TextStyle(
                             color: Colors.black, fontWeight: FontWeight.bold)),
-                    subtitle: Text(content["sharedMachineBean"]["deviceInfo"]["OS"].toString()),
+                    subtitle: Text(content["sharedMachineBean"]["deviceInfo"]
+                            ["os"]
+                        .toString()),
                   ),
                   Divider(),
                   ListTile(
                     title: Text('SIM: ',
                         style: TextStyle(
                             color: Colors.black, fontWeight: FontWeight.bold)),
-                    subtitle: Text(content["sharedMachineBean"]["deviceInfo"]["sim"][0].toString()),
+                    subtitle: Text(content["sharedMachineBean"]["deviceInfo"]
+                            ["sim"][0]
+                        .toString()),
                   ),
                   Divider(),
                   ListTile(
                     title: Text('COMP: ',
                         style: TextStyle(
                             color: Colors.black, fontWeight: FontWeight.bold)),
-                    subtitle: Text(content["sharedMachineBean"]["deviceInfo"]["comp"].toString()),
+                    subtitle: Text(content["sharedMachineBean"]["deviceInfo"]
+                            ["comp"]
+                        .toString()),
                   ),
                 ],
               ),
