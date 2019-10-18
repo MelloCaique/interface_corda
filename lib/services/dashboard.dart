@@ -137,6 +137,9 @@ class _DashboardState extends State<Dashboard> {
                         style: TextStyle(
                           color: Colors.white,
                         )),
+                    SizedBox(
+                      height: 10,
+                    ),
                     CircularProgressIndicator(
                       backgroundColor: Colors.red,
                     ),
@@ -258,6 +261,9 @@ class _DashboardState extends State<Dashboard> {
                         style: TextStyle(
                           color: Colors.white,
                         )),
+                    SizedBox(
+                      height: 10,
+                    ),
                     new CircularProgressIndicator(backgroundColor: Colors.red),
                   ],
                 ),
@@ -306,9 +312,33 @@ class _DashboardState extends State<Dashboard> {
             return Container(
               child: ListView(
                 children: <Widget>[
-                  Text(
-                    content.toString(),
-                   ),
+                  ListTile(
+                    title: Text('Hardware: ',
+                        style: TextStyle(
+                            color: Colors.black, fontWeight: FontWeight.bold)),
+                    subtitle: Text(content["sharedMachineBean"]["deviceInfo"]["hardware"].toString()),
+                  ),
+                  Divider(),
+                  ListTile(
+                    title: Text('OS: ',
+                        style: TextStyle(
+                            color: Colors.black, fontWeight: FontWeight.bold)),
+                    subtitle: Text(content["sharedMachineBean"]["deviceInfo"]["OS"].toString()),
+                  ),
+                  Divider(),
+                  ListTile(
+                    title: Text('SIM: ',
+                        style: TextStyle(
+                            color: Colors.black, fontWeight: FontWeight.bold)),
+                    subtitle: Text(content["sharedMachineBean"]["deviceInfo"]["sim"][0].toString()),
+                  ),
+                  Divider(),
+                  ListTile(
+                    title: Text('COMP: ',
+                        style: TextStyle(
+                            color: Colors.black, fontWeight: FontWeight.bold)),
+                    subtitle: Text(content["sharedMachineBean"]["deviceInfo"]["comp"].toString()),
+                  ),
                 ],
               ),
             );
@@ -321,6 +351,9 @@ class _DashboardState extends State<Dashboard> {
                         style: TextStyle(
                           color: Colors.white,
                         )),
+                    SizedBox(
+                      height: 10,
+                    ),
                     new CircularProgressIndicator(backgroundColor: Colors.red),
                   ],
                 ),

@@ -127,7 +127,23 @@ class _CompartilharState extends State<Compartilhar> {
                         ),
                       ),
                       Divider(height: 10, color: Colors.black),
-                      RaisedButton(
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: <Widget>[
+                        RaisedButton(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5)),
+                        color: Colors.red,
+                        child: Text('Info Sistema',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 13.5,
+                                fontWeight: FontWeight.bold)),
+                        onPressed: () {
+                        
+                        },
+                      ),
+                        RaisedButton(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5)),
                         color: Colors.red,
@@ -140,6 +156,8 @@ class _CompartilharState extends State<Compartilhar> {
                           postCall();
                           test = "Método em construção";
                         },
+                      ),
+                        ],
                       ),
                     ],
                   ),
