@@ -101,7 +101,7 @@ class _LoginState extends State<Login> {
                                         },
                                         keyboardType: TextInputType.number,
                                         decoration: InputDecoration(
-                                          hintText: "Host",
+                                          hintText: " Host",
                                           hintStyle: TextStyle(
                                               fontSize: 15,
                                               fontWeight: FontWeight.bold),
@@ -120,6 +120,7 @@ class _LoginState extends State<Login> {
                                       borderRadius: BorderRadius.circular(10),
                                       elevation: 0,
                                       child: TextFormField(
+                                        
                                         initialValue: '8080',
                                         validator: (value) {
                                           if (value.isEmpty) {
@@ -130,7 +131,7 @@ class _LoginState extends State<Login> {
                                         },
                                         keyboardType: TextInputType.number,
                                         decoration: InputDecoration(
-                                          hintText: "Port",
+                                          hintText: " Port",
                                           hintStyle: TextStyle(
                                               fontSize: 15,
                                               fontWeight: FontWeight.bold),
@@ -153,20 +154,23 @@ class _LoginState extends State<Login> {
                                       shadowColor: Colors.black,
                                       borderRadius: BorderRadius.circular(10),
                                       elevation: 0,
-                                      child: TextFormField(
-                                        controller: _userController,
-                                        validator: (value) {
-                                          if (value.isEmpty) {
-                                            return "   Error";
-                                          }
-                                        },
-                                        keyboardType: TextInputType.text,
-                                        decoration: InputDecoration(
-                                          hintText: "Username",
-                                          hintStyle: TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold),
-                                          fillColor: Colors.green,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(3.0),
+                                        child: TextFormField(
+                                          controller: _userController,
+                                          validator: (value) {
+                                            if (value.isEmpty) {
+                                              return "   Error";
+                                            }
+                                          },
+                                          keyboardType: TextInputType.text,
+                                          decoration: InputDecoration(
+                                            hintText: " Username",
+                                            hintStyle: TextStyle(
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.bold),
+                                            fillColor: Colors.green,
+                                          ),
                                         ),
                                       ),
                                     )),
@@ -185,21 +189,26 @@ class _LoginState extends State<Login> {
                                       shadowColor: Colors.black,
                                       borderRadius: BorderRadius.circular(10),
                                       elevation: 0,
-                                      child: TextFormField(
-                                        controller: _passwordController,
-                                        validator: (value) {
-                                          if (value.isEmpty) {
-                                            return "   Error";
-                                          }
-                                        },
-                                        obscureText: true,
-                                        keyboardType: TextInputType.text,
-                                        decoration: InputDecoration(
-                                          hintText: "Password",
-                                          hintStyle: TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold),
-                                          fillColor: Colors.green,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(3.0),
+                                        child: TextFormField(
+                                          maxLength: 5,
+                                          controller: _passwordController,
+                                          validator: (value) {
+                                            if (value.isEmpty) {
+                                              return "   Error";
+                                            }
+                                          },
+                                          obscureText: true,
+                                          keyboardType: TextInputType.text,
+                                          decoration: InputDecoration(
+                                            hintText: " Password",
+                                
+                                            hintStyle: TextStyle(
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.bold),
+                                            fillColor: Colors.green,
+                                          ),
                                         ),
                                       ),
                                     )),

@@ -68,7 +68,6 @@ class _DashboardState extends State<Dashboard> {
   Future<dynamic> getUrl() async {
     String apiUrl =
         "http://$host:$port/sharedmachineweb/api/nodes/machines?pageSize=4&pageNumber=1&sort=1&typeSort=0&stateStatus=0&statusOpType=0";
-
     http.Response response = await http.get(apiUrl);
     return json.decode(response.body);
   }
@@ -79,7 +78,6 @@ class _DashboardState extends State<Dashboard> {
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           if (snapshot.hasData) {
             List content = snapshot.data;
-            print(content);
             var _counter = content.length;
             return ListView.builder(
                 itemCount: _counter,
@@ -150,22 +148,13 @@ class _DashboardState extends State<Dashboard> {
           }
         });
   }
-
-  Future<dynamic> getUrlTable() async {
-    String apiUrl =
-        "http://$host:$port/sharedmachineweb/api/nodes/machines?pageSize=4&pageNumber=1&sort=1&typeSort=0&stateStatus=0&statusOpType=0";
-
-    http.Response responseTable = await http.get(apiUrl);
-    return json.decode(responseTable.body);
-  }
-
+  
   Widget updateTable() {
     return new FutureBuilder(
-        future: getUrlTable(),
+        future: getUrl(),
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           if (snapshot.hasData) {
             List contentTable = snapshot.data;
-            print(contentTable);
             var _counterTable = contentTable.length;
             return ListView.builder(
                 itemCount: _counterTable,
@@ -370,4 +359,5 @@ class _DashboardState extends State<Dashboard> {
           }
         });
   }
+  
 }

@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
@@ -9,17 +10,11 @@ class Compartilhar extends StatefulWidget {
 }
 
 class _CompartilharState extends State<Compartilhar> {
-  var resposta = "";
-  var response;
-  String test = "";
-  final _peerController = new TextEditingController();
-  final _valueController = new TextEditingController();
-
-  postCall() {
-    setState(() {
-      resposta = postRequest().toString();
-    });
-  }
+  final _idController = new TextEditingController();
+  final _motivoController = new TextEditingController();
+  var resposta;
+  var dropdownValue;
+  var dropdownValue2;
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +49,67 @@ class _CompartilharState extends State<Compartilhar> {
                               fontWeight: FontWeight.bold)),
                       Divider(height: 10, color: Colors.black),
                       Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: new PhysicalModel(
+                            color: Colors.white,
+                            shadowColor: Colors.black,
+                            borderRadius: BorderRadius.circular(10),
+                            elevation: 0,
+                            child: DropdownButton<String>(
+                                hint: Text('Status'),
+                                value: dropdownValue,
+                                icon: Icon(Icons.arrow_downward),
+                                iconSize: 20,
+                                isExpanded: true,
+                                elevation: 5,
+                                onChanged: (String newValue) {
+                                  setState(() {
+                                    dropdownValue = newValue;
+                                  });
+                                },
+                                items: <String>[
+                                  ' COMPROMETIDA',
+                                  ' SUSPEITA'
+                                ].map<DropdownMenuItem<String>>((String value) {
+                                  return DropdownMenuItem<String>(
+                                    value: value,
+                                    child: Text(value),
+                                  );
+                                }).toList()),
+                          )),
+                      Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: new PhysicalModel(
+                            color: Colors.white,
+                            shadowColor: Colors.black,
+                            borderRadius: BorderRadius.circular(10),
+                            elevation: 0,
+                            child: DropdownButton<String>(
+                                hint: Text('motivo'),
+                                value: dropdownValue2,
+                                icon: Icon(Icons.arrow_downward),
+                                iconSize: 20,
+                                isExpanded: true,
+                                elevation: 5,
+                                onChanged: (String newValue) {
+                                  setState(() {
+                                    dropdownValue2 = newValue;
+                                  });
+                                },
+                                items: <String>[
+                                  ' ROUBO',
+                                  ' FURTO',
+                                  ' SUSPEITA FRAUDE',
+                                  ' FRAUDE ALEGADA',
+                                  ' OUTRO MOTIVO'
+                                ].map<DropdownMenuItem<String>>((String value) {
+                                  return DropdownMenuItem<String>(
+                                    value: value,
+                                    child: Text(value),
+                                  );
+                                }).toList()),
+                          )),
+                      Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: new PhysicalModel(
                           color: Colors.white,
@@ -61,7 +117,7 @@ class _CompartilharState extends State<Compartilhar> {
                           borderRadius: BorderRadius.circular(10),
                           elevation: 0,
                           child: TextFormField(
-                            controller: _peerController,
+                            controller: _motivoController,
                             validator: (value) {
                               if (value.isEmpty) {
                                 return "   Error";
@@ -69,9 +125,7 @@ class _CompartilharState extends State<Compartilhar> {
                             },
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
-                              hintText: "Status",
-                              hintStyle: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.bold),
+                              hintText: " Observação",
                               fillColor: Colors.green,
                             ),
                           ),
@@ -85,7 +139,7 @@ class _CompartilharState extends State<Compartilhar> {
                           borderRadius: BorderRadius.circular(10),
                           elevation: 0,
                           child: TextFormField(
-                            controller: _valueController,
+                            controller: _idController,
                             validator: (value) {
                               if (value.isEmpty) {
                                 return "   Error";
@@ -93,33 +147,7 @@ class _CompartilharState extends State<Compartilhar> {
                             },
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
-                              hintText: " Motivo",
-                              hintStyle: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.bold),
-                              fillColor: Colors.green,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: new PhysicalModel(
-                          color: Colors.white,
-                          shadowColor: Colors.black,
-                          borderRadius: BorderRadius.circular(10),
-                          elevation: 0,
-                          child: TextFormField(
-                            controller: _valueController,
-                            validator: (value) {
-                              if (value.isEmpty) {
-                                return "   Error";
-                              }
-                            },
-                            keyboardType: TextInputType.text,
-                            decoration: InputDecoration(
-                              hintText: "ID Máquina",
-                              hintStyle: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.bold),
+                              hintText: " ID Máquina",
                               fillColor: Colors.green,
                             ),
                           ),
@@ -129,33 +157,32 @@ class _CompartilharState extends State<Compartilhar> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: <Widget>[
-                        RaisedButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5)),
-                        color: Colors.red,
-                        child: Text('Info Sistema',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 13.5,
-                                fontWeight: FontWeight.bold)),
-                        onPressed: () {
-                        
-                        },
-                      ),
-                        RaisedButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5)),
-                        color: Colors.red,
-                        child: Text('Cadastrar',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 13.5,
-                                fontWeight: FontWeight.bold)),
-                        onPressed: () {
-                          postCall();
-                          test = "Método em construção";
-                        },
-                      ),
+                          RaisedButton(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5)),
+                            color: Colors.red,
+                            child: Text('Info Sistema',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 13.5,
+                                    fontWeight: FontWeight.bold)),
+                            onPressed: () {},
+                          ),
+                          RaisedButton(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5)),
+                              color: Colors.red,
+                              child: Text('Cadastrar',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 13.5,
+                                      fontWeight: FontWeight.bold)),
+                              onPressed: () async {
+                                resposta = await makeRequest();
+                                setState(() {
+                                  getId();
+                                });
+                              }),
                         ],
                       ),
                     ],
@@ -164,17 +191,21 @@ class _CompartilharState extends State<Compartilhar> {
               ),
             ),
           ),
-          Container(child: Text(test),),
-          Container(child: Text(resposta)),
         ],
       ),
     );
   }
 
-  Future<dynamic> postRequest() async {
-    return response = await http.post(
-      "http://$host:$port//sharedmachineweb/api/nodes/machines/",
-    body: {"hashSharedMachine": "12345",
+  Future<dynamic> makeRequest() async {
+    var url = "http://$host:$port/sharedmachineweb/api/nodes/machines/";
+
+    var response = await http.post(Uri.encodeFull(url),
+        headers: {
+          "content-type": "application/json",
+          "cache-control": "no-cache"
+        },
+        body: jsonEncode({
+          "hashSharedMachine": "00000",
           "operationType": "2",
           "motiveType": "1",
           "observation": "test 123",
@@ -228,10 +259,74 @@ class _CompartilharState extends State<Compartilhar> {
               "wv_ua":
                   "Mozilla/5.0 (Linux; Android 7.1.2; Build/NZH54B; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/59.0.3071.125 Mobile Safari/537.36"
             }
-          }},
-      headers: {"Content-Type": "application/json",
-          "Postman-Token": "7d8fc7c5-078d-4ab2-aa66-b0a7465ee64d",
-          "cache-control": "no-cache"},
-    );
+          }
+        }));
+
+    resposta = response.body;
+    print(response.body);
+    return (response.body);
+  }
+
+  getId() async {
+    showModalBottomSheet(
+        context: context,
+        builder: (_) {
+          return Scaffold(
+            appBar: AppBar(
+              title: Text(
+                'ID Máquina Compartilhada',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w400),
+              ),
+              backgroundColor: Colors.blue.shade900,
+              centerTitle: true,
+            ),
+            body: Container(
+              decoration: new BoxDecoration(
+                gradient: new LinearGradient(
+                    colors: [
+                      Colors.white,
+                      Colors.blueGrey,
+                      Colors.blue.shade900,
+                    ],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    stops: [0.0, 0.8, 1.0],
+                    tileMode: TileMode.mirror),
+              ),
+              child: Column(
+                children: <Widget>[
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    "Uma máquina foi compartilahda no Ledger com sucesso pelo BRADESCO",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Divider(),
+                  Text(
+                    "ID Transação",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  Text(resposta),
+                  Divider(),
+                ],
+              ),
+            ),
+          );
+        });
   }
 }

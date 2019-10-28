@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:interface_corda/services/compartilhar.dart';
 import 'package:interface_corda/services/dashboard.dart';
+import 'package:interface_corda/services/peers.dart';
 
 class Menu extends StatefulWidget {
   @override
@@ -13,6 +14,7 @@ class _MenuState extends State<Menu> {
   final List<Widget> _children = [
     Dashboard(),
     Compartilhar(),
+    Peers(),
   ];
 
   void onTabTapped(int index) {
@@ -68,6 +70,18 @@ class _MenuState extends State<Menu> {
                 ),
                 title: Text(
                   "Compartilhar",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                )),
+                BottomNavigationBarItem(
+                backgroundColor: Colors.black,
+                icon: Icon(
+                  Icons.people,
+                  color: Colors.white,
+                ),
+                title: Text(
+                  "Parceiros",
                   style: TextStyle(
                     color: Colors.white,
                   ),
