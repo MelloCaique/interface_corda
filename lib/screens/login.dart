@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:interface_corda/data/data.dart';
 import 'package:interface_corda/screens/menu.dart';
@@ -21,6 +23,25 @@ class _LoginState extends State<Login> {
     port = valuePort;
     print(host);
     print(port);
+
+      Future makeRequest() async {
+    var url = "http://$host:$port/sharedmachineweb/api/logins/";
+
+     http.post(Uri.encodeFull(url),
+        headers: {
+          "content-type": "application/json",
+          "cache-control": "no-cache"
+        },
+        body: jsonEncode(
+          {
+          "email": "${_userController.text}",
+	        "senha": "${_passwordController.text}"
+          }
+        ));
+        print(_userController.text);
+        print(_userController.text);
+  }
+
     Navigator.push(context, MaterialPageRoute(builder: (context) => Menu()));
   }
 
@@ -165,7 +186,7 @@ class _LoginState extends State<Login> {
                                           },
                                           keyboardType: TextInputType.text,
                                           decoration: InputDecoration(
-                                            hintText: " Username",
+                                            hintText: " Username "+" \"user@bradesco.com.br\"",
                                             hintStyle: TextStyle(
                                                 fontSize: 15,
                                                 fontWeight: FontWeight.bold),
@@ -202,7 +223,7 @@ class _LoginState extends State<Login> {
                                           obscureText: true,
                                           keyboardType: TextInputType.text,
                                           decoration: InputDecoration(
-                                            hintText: " Password",
+                                            hintText: " Password "+" \"12345\"",
                                 
                                             hintStyle: TextStyle(
                                                 fontSize: 15,

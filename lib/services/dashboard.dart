@@ -67,7 +67,7 @@ class _DashboardState extends State<Dashboard> {
 
   Future<dynamic> getUrl() async {
     String apiUrl =
-        "http://$host:$port/sharedmachineweb/api/nodes/machines?pageSize=4&pageNumber=1&sort=1&typeSort=0&stateStatus=0&statusOpType=0";
+        "http://$host:$port/sharedmachineweb/api/nodes/machines?pageSize=10&pageNumber=1&sort=1&typeSort=0&stateStatus=0&statusOpType=0";
     http.Response response = await http.get(apiUrl);
     return json.decode(response.body);
   }
